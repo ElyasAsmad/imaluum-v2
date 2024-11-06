@@ -4,6 +4,7 @@ import { Outlet, ScrollRestoration } from "@tanstack/react-router";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import appCss from "~/styles/app.css?url";
 import type { QueryClient } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 // const queryClient = new QueryClient({
 //   defaultOptions: {
@@ -101,6 +102,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					<Scripts />
 				</ThemeProvider>
 			</Body>
+			<Toaster />
 		</Html>
 	);
 }
