@@ -9,9 +9,10 @@ export default function TimetableRow({
 	hour,
 	numberOfDays,
 	showHour = true,
+	key,
 }: TimetableRowProps) {
 	return (
-		<div className="relative w-full h-16">
+		<div className="relative w-full h-16" key={key}>
 			<div className="absolute w-full h-full border-b border-border/30 sm:border-border" />
 			<div className="absolute left-0 w-12 h-full hidden sm:flex flex-col items-center justify-start border-r border-border bg-background">
 				{showHour && (
