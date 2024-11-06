@@ -2,22 +2,17 @@ import { useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { setCookie } from "vinxi/http";
 import { Button } from "~/components/shared/button";
 import { Input } from "~/components/shared/input";
 import useProfile from "~/hooks/use-profile";
 import useResult from "~/hooks/use-result";
 import useSchedule from "~/hooks/use-schedule";
-import { deleteCookie, setCookie } from "vinxi/http";
-import { request } from "undici";
-import { BACKEND_URL } from "~/constants";
+import { gmRequest } from "~/utils/gomaluum-request";
 
-type TLoginResponse = {
-	status: number;
-	message: string;
-	data: {
-		username: string;
-		token: string;
-	};
+type TLoginResponseData = {
+	username: string;
+	token: string;
 };
 
 type Credentials = {
@@ -35,15 +30,11 @@ const LoginForm = () => {
 	const router = useRouter();
 
 	const loginUser = createServerFn("POST", async (credentials: Credentials) => {
-		const res = await request(`${BACKEND_URL}/api/login`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(credentials),
-		});
 
-		const json = (await res.body.json()) as unknown as TLoginResponse;
+		const json = await gmRequest<TLoginResponseData>("/api/login", {
+			method: 'POST',
+			body: credentials,
+		})
 
 		setCookie("MOD_AUTH_CAS", json.data.token, {
 			// Expires in 30 minutes
