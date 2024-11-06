@@ -7,31 +7,10 @@ import useProfile from "~/hooks/use-profile";
 import useSchedule from "~/hooks/use-schedule";
 import { fetchSchedule } from "~/actions/schedule";
 import { fetchProfile } from "~/actions/profile";
-// import { GetResult } from "~/utils/scraper/result";
 
 const ImaluumProvider = ({ children }: { children: React.ReactNode }) => {
 	const { profile, setProfile } = useProfile();
 	const { schedule, setSchedule } = useSchedule();
-
-	// const fetchResult = createServerFn("GET", async () => {
-	//   const token = GetToken();
-	//
-	//   if (!token) {
-	//     throw redirect({
-	//       to: "/",
-	//     });
-	//   }
-	//   const res = await GetResult(token);
-	//
-	//   if (res.error || !res.data) {
-	//     console.log("result error: ", res);
-	//     return null;
-	//   }
-	//
-	//   const json = res.data;
-	//
-	//   return json;
-	// });
 
 	const fetchImaluum = useQueries({
 		queries: [
