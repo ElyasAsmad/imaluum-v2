@@ -91,7 +91,7 @@ function Home() {
 							In construction
 						</span>
 						<a
-							href="https://github.com/qryskalyst20/simplified-imaluum"
+							href="https://github.com/nrmnqdds/imaluum-v2"
 							target="_blank"
 							rel="noreferrer"
 							className="inline-flex space-x-6"
